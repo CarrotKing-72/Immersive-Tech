@@ -1,0 +1,100 @@
+/* Define the BLANKA font */
+@font-face {
+    font-family: 'BLANKA';
+    src: url('fonts/BLANKA.otf') format('opentype');
+}
+
+/* Define the Tokyo font */
+@font-face {
+    font-family: 'Tokyo';
+    src: url('fonts/Tokyo.otf') format('opentype');
+}
+
+body {
+    font-family: 'Tokyo', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #0b122b;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+header h1, h2, h3, h4, h5, h6 {
+    font-family: 'Tokyo', sans-serif;
+    margin: 0;
+}
+
+.header-left,
+.header-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.header-left {
+    left: 100px;
+}
+
+.header-right {
+    right: 100px;
+}
+
+.header-left img {
+    height: 100px; /* Adjust the height as needed */
+}
+.header-right img {
+    height: 200px; /* Adjust the height as needed */
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 18px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+main h1, h2, h3, h4, h5, h6 {
+    font-family: 'Tokyo', sans-serif;
+}
+
+.back-button {
+    font-family: 'Tokyo', sans-serif;
+    background-color: transparent; /* Remove background */
+    color: rgb(0, 0, 0);
+    border: none; /* Remove border */
+    padding: 8px 20px; /* Adjust padding to move text up */
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    margin: 10px 0;
+    cursor: pointer;
+    position: absolute;
+    top: 12%;
+    left: 0px;
+    transform: translateY(-50%);
+}
+
+.back-button:hover {
+    text-decoration: underline; /* Add underline on hover */
+}
