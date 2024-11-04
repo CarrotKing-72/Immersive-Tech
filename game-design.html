@@ -25,8 +25,16 @@
             font-size: 18px;
             line-height: 1.6;
         }
+        .content {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        
     </style>
-    
 </head>
 <body>
     <header>
@@ -43,13 +51,28 @@
             <a href="contact.html">Contact</a>
         </nav>
     </header>
-    </header>
     <main>
         <div class="header-container">
             <button class="back-button" onclick="location.href='projects.html'">Back to Projects</button>
             <h2>Endless Runner</h2>
         </div>
-        <p>Details about game design projects will go here.</p>
+        <div class="content">
+            <p>Here I was tasked with making a barebones start towards an endless runner style game like subway surfers. First, I played around with a few different Ideas for the game such as:</p>
+            <ul>
+                <li>Highway chase game</li>
+                <li>Plane in clouds</li>
+                <li>Forest logging truck</li>
+            </ul>
+            <p>Ultimately, I settled on making a game where the player controls a logging truck through the forest avoiding trees and animals along the way. The game would end up if finished with animated animals walking across the track as obstacles and then logs you must collect on the way to earn bonus points. <br> <br>Power ups were also going to be implemented along the way with one being a chainsaw that allows you to cut down trees and collect the logs as points whilst simultaneously allowing you to bypass that obstacle, a similar power up could be implemented as a sort of net on the truck that would let you catch and relocate animals along the way also granting you points.</p>
+            
+            <p>I ended up finding using some paid low poly assets I bought a while back as the basis of the style in the game, then I designed 3 separate tiles to create a sample level. Player movement is basic side to side and forward movement (this would have been changed later when the endless feature would have been implemented). The animals were also added as low poly obstacles that caused a game and player position reset back to the start when hit.</p>
+            
+            <p>I created a basic UI screen that would appear at the start of the game and whenever the player died, it would hide after start being pressed and then game time would resume to allow gameplay to continue.</p>
+            
+            <p>Overall, the game project went well with helping understand the initial concepts within the unity engine, this will help me in future when starting new projects and gaining a sense of direction and momentum within the project. <br> <br>What went wrong was my time management skills and overestimation of my ability to code all the features I wanted into the game; I created the 3 template tiles to make the game endless however I did not get round to implementing that feature due to time restrictions and other life circumstances getting in the way. The game could be expanded in the future to include score, endless tiles and powerups.</p>
+            
+            <p>Download the Game Build Here: <a href="https://github.com/CarrotKing-72/EndlessRunner/releases/tag/Game">https://github.com/CarrotKing-72/EndlessRunner/releases/tag/Game</a></p>
+        </div>
     </main>
 </body>
 </html>
