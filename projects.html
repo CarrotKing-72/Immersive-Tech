@@ -19,24 +19,35 @@
             justify-content: space-around;
             margin-top: 20px;
         }
-        .project-box {
-            background-color: #f4f4f4;
-            border: 1px solid #ccc;
+        .project-section {
+            background-color: #ffffff;
+            border: 2px solid #0b122b;
             border-radius: 8px;
             padding: 20px;
             text-align: center;
             width: 30%;
-            transition: transform 0.2s;
         }
-        .project-box:hover {
-            transform: scale(1.05);
+        .project-section h3 {
+            margin-bottom: 10px;
         }
-        .project-box a {
-            text-decoration: none;
-            color: #333;
-            font-size: 20px;
-            display: block;
+        .subsection-container {
             margin-top: 10px;
+        }
+        .subsection {
+            background-color: #fff;
+            border: 2px solid #101938;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        .subsection a {
+            text-decoration: none;
+            color: #5e1baa;
+            font-size: 16px;
+        }
+        .subsection a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -50,29 +61,52 @@
             <img src="iconClear.png" alt="iconClear">
         </div>
         <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
+            <a href="index.html">Welcome</a>
             <a href="projects.html">Projects</a>
             <a href="contact.html">Contact</a>
         </nav>
     </header>
     <main>
         <div class="header-container">
-            <button class="back-button" onclick="location.href='index.html'">Back to Home</button>
-            <h2>Here are my Projects so far</h2>
+            <button class="back-button" onclick="location.href='index.html'">Back to Welcome</button>
+            <h2>Here you can view current and ongoing projects:</h2>
         </div>
         <div class="projects-container">
-            <div class="project-box">
+            <div class="project-section">
                 <h3>Unity</h3>
-                <a href="game-design.html">View Projects</a>
+                <div class="subsection-container">
+                    <div class="subsection">
+                        <a href="game-design.html">Spaceship Defense</a>
+                    </div>
+                    <div class="subsection">
+                        <a href="game-design.html">Forest Drive Endless Runner</a>
+                    </div>
+                    <!-- Add more subsections as needed -->
+                </div>
             </div>
-            <div class="project-box">
+            <div class="project-section">
                 <h3>Blender</h3>
-                <a href="blender.html">View Projects</a>
+                <div class="subsection-container">
+                    <div class="subsection">
+                        <a href="blender.html">3d LowPoly World</a>
+                    </div>
+                    <div class="subsection">
+                        <a href="blender.html">Blender Subsurface tree models</a>
+                    </div>
+                    <!-- Add more subsections as needed -->
+                </div>
             </div>
-            <div class="project-box">
+            <div class="project-section">
                 <h3>Other Design Software</h3>
-                <a href="other-design-software.html">View Projects</a>
+                <div class="subsection-container">
+                    <div class="subsection">
+                        <a href="other-design-software.html">Environment Poster</a>
+                    </div>
+                    <div class="subsection">
+                        <a href="other-design-software.html">Design Thinking Models</a>
+                    </div>
+                    <!-- Add more subsections as needed -->
+                </div>
             </div>
         </div>
     </main>

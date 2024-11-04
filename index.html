@@ -3,8 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Ryan Mcfly Portfolio</title>
+    <title>Ryan Mcfly's Portfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .header-container {
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header-container h2 {
+            margin: 0;
+        }
+        .subtext {
+            text-align: center;
+            margin: 20px auto;
+            max-width: 600px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        .image-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .image-container img {
+            width: 15%;
+            height: auto;
+        }
+        .header-container img {
+            width: 12%; /* Adjust the width as needed */
+            height: auto;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 5px; /* Adjust the gap as needed */
+        }
+        nav a {
+            text-decoration: none;
+            color: rgb(255, 255, 255); /* Adjust the color as needed */
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -16,15 +54,24 @@
             <img src="iconClear.png" alt="iconClear">
         </div>
         <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
+            <a href="index.html">Welcome</a>
             <a href="projects.html">Projects</a>
             <a href="contact.html">Contact</a>
         </nav>
     </header>
     <main>
-        <h2>Welcome to my portfolio</h2>
-        <p>This is the home page.</p>
+        <div class="header-container">
+            <img src="full.png" alt="full">
+        </div>
+        <p class="subtext">
+            Cosmic Studios is my indie development studio that i have created to showcase my projects and work. 
+            <br><br>My name is Ryan Mcfly and I am currently studying Immersive Technologies at the University of Winchester.
+            <br><br>
+            This portfolio is where I will be uploading my projects and their progress throughout my studies. Here you can see my progress in real time on my projects along with other information about the thought and creation process of each of my projects and why they benefitted me.
+        </p>
+        <div class="image-container">
+            <img src="Winch.png" alt="University of Winchester">
+        </div>
     </main>
 </body>
 </html>
