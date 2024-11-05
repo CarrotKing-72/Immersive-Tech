@@ -5,7 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ryan Mcfly's Portfolio - Dungeon Game</title>
     <link rel="stylesheet" href="styles.css">
-    
+    <style>
+        main {
+            text-align: center;
+        }
+        
+        .header-container {
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header-container h2 {
+            margin: 0;
+        }
+        .subtext {
+            text-align: center;
+            margin: 20px auto;
+            max-width: 600px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        .content {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        
+    </style>
 </head>
 <body>
     <header>
@@ -28,7 +57,22 @@
             <h2>Top Down Dungeon</h2>
         </div>
         <div class="content">
-            <!-- Content goes here -->
+            <p>This is my top-down dungeon project that I completed This project’s purpose was to teach me about coroutines, Ray casting and how to effectively implement them into our personal projects. <br><br>I started off by altering the games wall with door prefabs to split their colliders to allow space for the doorway and player movement within the doorway.</p>
+            <div style="text-align: center;"> <img src="dg6.png" alt="er1" style="width: 100%; max-width: 600px; height: auto;"> </div>
+            <p>Then I created a small script to test out ray casting, which resulted in a little green line coming out of the player in scene view to represent the ray, this was then taken and implemented into the player movement script to account for collisions to the player and stopping movement through objects. <div style="text-align: center;"> <img src="dg3.png" alt="er1" style="width: 100%; max-width: 600px; height: auto;"> </div>
+               the key and door collision scripts now had to be altered to work with the new system.<br>I added if statements into the collision script to consider what the ray is touching and if it has the correct tags i.e. “key” or “door” to then update the game saying if the player now has the key or not.<br><br> Once this was done with ray casting it was time to add coroutines in the form of timed bombs the player can use instead of a key to get through the door.</p>
+                <div style="text-align: center;"> <img src="dg1.png" alt="er1" style="width: 100%; max-width: 600px; height: auto;"> </div>
+            <p>This was achieved via a new script called explosion manager which took all the variables from the bomb such as its fuse time, what particles it used and what to destroy. <br><br>Using this I made a new coroutine for the explosion timer and using “yield return new WaitForSeconds(fuseTime);” (this tells the game to wait for the fuse time to run out before code execution) I implemented the bomb system which lit a fuse then blew up with smoke and particles after 2 seconds destroying the game object alongside it. <br><br>Then I added the proximity explosion code which checked if an object with the “door” tag was within the specified value I had already set, if it was then the door would be destroyed as well.<br><br>Taking that script and attaching it to the bomb prefab allows any instance of the object to use that script then in the player movement script I added a function that when the shift key or “Fire3” is pressed down then a bomb would be instantiated at the players position allowing them to bypass the key and blow up the door when they want to. </p>
+            <div style="text-align: center;"> <img src="dg5.png" alt="er1" style="width: 100%; max-width: 600px; height: auto;"> </div>
+            <p>Overall this project worked out great, my only issue was forgetting to add the colliders to the other walls which caused the player to be able to move through them but that was quickly corrected, then making sure all the code references the correct names and variables as well took some time due to working between a few different scripts, this was very helpful for me to learn from and showed me a few different ways I could use Ray casting and Coroutines in my other projects.
+            </p>
+            <div style="text-align: center;"> <img src="dg2.png" alt="er1" style="width: 100%; max-width: 600px; height: auto;"> </div>
+            <p>If I were to finish the project I would add textures to the ground and improve the camera angle as to make it so the player cannot see into the other rooms, perhaps a fog of war feature would work, then I would add a hud to let the player know what keys to press for the bombs and maybe a extra timer between bomb creation or some sort of crafting system to allow bombs to be a good alternative to the key but not easy as to not ever use the key that players can pick up.
+            </p>
+        
+             <p>Download the Game Build Here:<a href="https://github.com/CarrotKing-72/Top-Down-Dungeon/releases/tag/DungeonGame" > Top Down Dungeon Download</a></p>
+        
+    
         </div>
     </main>
 </body>
