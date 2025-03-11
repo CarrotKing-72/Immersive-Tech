@@ -74,12 +74,14 @@
             <br>
             <h4>Initial Concept & Planning</h4>
             <p>We started with a core idea to combine fast-paced task management with strategic farming mechanics. I spearheaded the design of key gameplay features and identified the coding systems needed to bring them to life. The team collaborated on concept art, iterating on the game's name, visual design, and unique mechanics.</p>
+            <p>research was split between us as a group equally, my main job was to plan out the features we wanted in the game and then give a baseline of what i would need to code in to implement these features into the game.<br><br> the art style was something we all talked about as a team, initially we wanted to go with a 2.5d or 3d game with 2d assets for this but quickly agreed this would take to much time and force us to cut back on the projects features. We moved onto a 2d game with the camera and art heavily inspired by stardew valley (Barone, E. (2016) Stardew Valley. [Video Game] ConcernedApe. Available on: PC, PlayStation, Xbox, Nintendo Switch.).<br><br> our main theme was a green house but inspired by ancient greece mythology, hence the more temple like greenhouse look, this idea devolved slightly as we didnt have time to implement the themed plants we had planned so we kept the art and moved on.<br><br> For the name we wanted it to capture the games style and gameplay as much as possible whilst still being a good name that is fun and easy to remember, garden of the gods was our initial idea but due to the fact we couldnt add in enough greek mythos to link to we had to pivot into overgrown which kept the essence in showing the player its about plant growth and tied into the gameplay theme of our project.  </p>
             <p>The original idea included plants with special attributes, such as:</p>
             <ul>
                 <li>Bomb Plant: Destroys other plants, forcing players to restart.</li>
                 <li>Time Plant: Alters growth speeds.</li>
                 <li>Points Plant: Multiplies the points earned on harvest.</li>
             </ul>
+            <p>concept art was also drawn up by the digital media design students which we then took and used piskel (PiskelApp. (n.d.). Piskel - Free online sprite editor. [online] Available at: https://www.piskelapp.com) to create the pixelised versions that we used in the games design</p>
             <div style="text-align: center;">
                 <img src="gp2.png" alt="gp2" style="width: 100%; max-width: 600px; height: auto;">
             </div>
@@ -94,8 +96,269 @@
                 <img src="gp3.png" alt="gp3" style="width: 100%; max-width: 600px; height: auto;">
             </div>
             <p>However, I encountered the challenge of feature creep, attempting to implement too many features within a limited timeframe. To overcome this, I refocused on the core mechanics essential to the player experience. Simplifying the design required critical problem-solving, especially when dealing with unexpected bugs. One such challenge involved a missing collider during the pickup and placement system, which took a full day to diagnose and resolve. These moments taught me the importance of methodical debugging and time management.</p>
+            <br><br>
+            <h4>Gameplay Mechanics</h4>
+            <p> Customer order system:<br><br> this was a tricky feature to implement and took a bit of back and forth with how i went about it, i had the customer order script link up with a ui element to display the customers order and a warning if you try to add too many orders 
+                <pre><code>    UpdateOrderText();
+                // Clear any previous warning text
+                if (warningText != null)
+                {
+                    warningText.SetText("");
+                }
+            }
+            else
+            {// Display warning message
+                if (warningText != null)
+                {
+                    warningText.SetText("Complete the current order before generating a new one.");
+                    Debug.Log("Warning text updated: " + warningText.text);
+                }
+                else
+                {
+                    Debug.LogError("Warning text component is null.");
+                }
+            }</code></pre></p>
+            <p>for the main element of the customer order i defined 3 different game objects which were the plants stages of gorwth and then used that to generate a random order size from 1-3 items and use each of the 3 objects randomly to generate random orders each time of different lenghts.</p>
+            <pre><code> private void GenerateOrder()
+                {
+                    if (currentOrder.Count == 0)
+                    {
+                        int orderSize = Random.Range(1, 4); // Generate an order size between 1 and 3
+               
+                        for (int i = 0; i < orderSize; i++)
+                        {
+                            string selectedStage = plantStages[Random.Range(0, plantStages.Length)];
+                            GameObject[] selectedPlants = GetPlantsByStage(selectedStage);
+                            GameObject selectedPlant = selectedPlants[Random.Range(0, selectedPlants.Length)];
+                            Vector3 originalPosition = selectedPlant.transform.position;
+               
+                            currentOrder.Add($"{selectedPlant.name} ({selectedStage})");
+                            currentOrderObjects.Add(selectedPlant);
+                            originalPositions.Add(originalPosition);
+                        }</code></pre>
+            <p>lastly for the main chunk of code on the order system i had to make sure the game knew when the order was complete, this was done via collision boxes in the game and the script checking which objects have been provided and if they match the order> when the correct objects are provided it removes it from the order till no items are need and the order is complete, score is then added and text appears completing the order.</p>
+            <pre><code> private void CompleteOrderItem(int index) // Complete order item at index
+                            {
+                                if (currentOrderObjects[index] != null) 
+                                {
+                                    currentOrderObjects[index].SetActive(false);
+                                    currentOrderObjects[index].transform.position = originalPositions[index];
+                                }
+                           
+                                currentOrder.RemoveAt(index);
+                                currentOrderObjects.RemoveAt(index);
+                                originalPositions.RemoveAt(index);
+                           
+                                UpdateOrderText(); // Update the order text
+                           
+                                if (currentOrder.Count == 0) // Check if the order is complete
+                                {
+                                    if (orderCorrect)
+                                    {
+                                        score += 100;
+                                    }
+                                    else
+                                    {
+                                        score += 50;
+                                    }
+                           
+                                    if (orderText != null)
+                                    {
+                                        orderText.SetText("Thank you for your order");
+                                    }
+                           
+                                    UpdatePointsText();
+                                    orderCorrect = true; // Reset for the next order
+                           
+                                    // Return assigned objects to their set positions
+                                    for (int i = 0; i < returnObjects.Length; i++)
+                                    {
+                                        if (returnObjects[i] != null)
+                                        {
+                                            returnObjects[i].transform.position = returnPositions[i];
+                                        }
+                                    }
+                                }
+                }</code></pre>
+
+
+                    <br><br><p>Plant Growth system:<br><br>this mechanic was very tricky and took a loing time to test and implement properly. orignially i did not have a clue in any way to go about adding this feature but after some brainstorming i decided to use object activation and postitioning as how i did it, this was achieved by setting a timer for the growth cycle, defining placement points in scene (the plant growth station) and then checking if the plant is on the point.</p>
+                            <pre><code>  public void CheckPlacement(GameObject placedObject)
+                                {
+                                    float distance = Vector3.Distance(placedObject.transform.position, placementPoint.position);
+                                    Debug.Log("Distance to placement point: " + distance);
+                              
+                                    if (placedObject == objectsToActivate[0] && distance <= placementThreshold)
+                                    {
+                                        ResumeCycling();
+                                    }
+                                    else if (placedObject == objectsToActivate[0] && distance > placementThreshold)
+                                    {
+                                        StopCycling();
+                                    }
+                                }</code></pre>
+                                <p>if the plant is on the placement point then the cycle is activated and it goes through the object index activating the next object and deactivating the previous one giving the illusion of plant growth, at any time the player can remove the object and pause the cycle of growth aswell.</p>
+            <pre><code>private void CycleObjects()
+{
+    // Deactivate the current object
+    if (objectsToActivate[currentIndex] != null)
+    {
+        objectsToActivate[currentIndex].SetActive(false);
+    }
+    else
+    {
+        Debug.LogError("Object at index " + currentIndex + " is not assigned.");
+    }
+
+    // Increment the index and wrap around if necessary
+    currentIndex = (currentIndex + 1) % objectsToActivate.Length;
+
+    // Activate the next object
+    if (objectsToActivate[currentIndex] != null)
+    {
+        objectsToActivate[currentIndex].SetActive(true);
+        Debug.Log("Activated " + objectsToActivate[currentIndex].name);
+    }
+    else
+    {
+        Debug.LogError("Object at index " + currentIndex + " is not assigned.");
+    }
+}
+
+public void PauseCycling()
+{
+    isPaused = true;
+    Debug.Log("Cycling paused");
+}
+
+public void ResumeCycling()
+{
+    isPaused = false;
+    Debug.Log("Cycling resumed");
+}
+
+public void StopCycling()
+{
+    isPaused = true;
+    Debug.Log("Cycling stopped");
+}</code></pre>
+<p>other than a basic player movement system the final major feature that i implemented was the item pickup ability and object creator script which allowed the player to generate a new plant pot as they would give their other ones to customers in their orders. object creation was done by checking if the player was in the interaction range of the station and if so then the regular plant pot object that would have been deactivated in the scene after the growth cycles would be move and reactivated to the pot station providing the illusion of making another pot </p>
+<pre><code> private void TryMoveObject()
+    {
+        if (player != null && Vector3.Distance(transform.position, player.transform.position) <= interactionRange)
+        {
+            if (objectToMove != null && !objectToMove.activeSelf)
+            {
+                MoveObject();
+            }
+            else
+            {
+                Debug.LogWarning("Object is already active or not assigned.");
+            }
+        }
+    }
+   
+    private void MoveObject()
+    {
+        if (objectToMove != null && targetPoint != null)
+        {
+            objectToMove.transform.position = targetPoint.position;
+            objectToMove.transform.rotation = targetPoint.rotation;
+            objectToMove.SetActive(true);
+            Debug.Log("Object moved: " + objectToMove.name);
+        }
+        else
+        {
+            Debug.LogError("Object to move or target point is not assigned.");
+        }
+    }</code></pre>
+    <p>for object pickup i had defined a point on the players body that the item would attatch to, then for pickup logic i used coliders and layers to check the distance from the object and if its in range then the object would be moved to a child of the pickup oint on the player.dropping or placing was done in the same way, if oyu were in range of a placement point then the object would be moved there, if not then it would simply detatch and remain on the floor </p>
+    <pre><code>private void TryPickupObject()
+        {
+            Debug.Log("Trying to pick up object");
+            Collider2D[] colliders = Physics2D.OverlapCircleAll((Vector2)transform.position + (Vector2)gizmoOffset, pickupRange, grabbableLayer);
+            foreach (var collider in colliders)
+            {
+                if (collider.CompareTag(objectTag))
+                {
+                    Debug.Log("Grabbable object found: " + collider.gameObject.name);
+                    grabbedObject = collider.gameObject;
+                    Rigidbody2D rb = grabbedObject.GetComponent<Rigidbody2D>();
+                    rb.linearVelocity = Vector2.zero;
+                    rb.angularVelocity = 0f;
+                    rb.bodyType = RigidbodyType2D.Kinematic;
+                    grabbedObject.transform.position = grabPosition.position;
+                    grabbedObject.transform.SetParent(grabPosition);
+        
+                    // Pause the PlantGrowth script if the grabbed object is in the plantPotObjects array
+                    foreach (var plantPotObject in plantPotObjects)
+                    {
+                        if (grabbedObject == plantPotObject)
+                        {
+                            plantGrowth.PauseCycling();
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+        
+        private void TryPlaceOrDropObject()
+        {
+            Debug.Log("Trying to place or drop object");
+        
+            // Check for valid placement point
+            Collider2D[] placementColliders = Physics2D.OverlapCircleAll((Vector2)transform.position + (Vector2)gizmoOffset, placementRange, placementLayer);
+            if (placementColliders.Length > 0)
+            {
+                foreach (var collider in placementColliders)
+                {
+                    if (collider.CompareTag(placementTag))
+                    {
+                        Debug.Log("Valid placement point found: " + collider.gameObject.name);
+                        PlaceObject(collider.transform);
+                        return;
+                    }
+                }
+            }
+        
+            // If no valid placement point, drop the object
+            DropObject();
+        }</code></pre>
+            <br><br>
+        <pre><code>private void PlaceObject(Transform placementPoint)
+            {
+                Debug.Log("Placing object at: " + placementPoint.name);
+                grabbedObject.transform.SetParent(null);
+                grabbedObject.transform.position = new Vector3(placementPoint.position.x, placementPoint.position.y, -1);
+                Debug.Log("Object placed at position: " + grabbedObject.transform.position);
+                Rigidbody2D rb = grabbedObject.GetComponent<Rigidbody2D>();
+                rb.bodyType = RigidbodyType2D.Static; // Make the object static after placement
             
-            <h4>Art & Assets</h4>
+                // Check placement for the PlantGrowth script
+                plantGrowth.CheckPlacement(grabbedObject);
+            
+                grabbedObject = null;
+            }
+            
+            private void DropObject()
+            {
+                Debug.Log("Dropping object");
+                if (grabbedObject != null)
+                {
+                    Rigidbody2D rb = grabbedObject.GetComponent<Rigidbody2D>();
+                    rb.bodyType = RigidbodyType2D.Dynamic;
+                    grabbedObject.transform.SetParent(null);
+            
+                    // Check placement for the PlantGrowth script
+                    plantGrowth.CheckPlacement(grabbedObject);
+            
+                    grabbedObject = null;
+                }
+            }</code></pre>
+
+<h4>Art & Assets</h4><br>
             <div style="text-align: center;">
                 <img src="gp4.png" alt="gp4" style="width: 100%; max-width: 600px; height: auto;">
             </div>

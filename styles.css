@@ -72,7 +72,13 @@ main {
     color:rgb(0, 0, 0)
 }
 
-
+pre:has(code) {
+	background: #f1f1f1;
+	padding: 2.33px;
+	border-radius: 0.1px;
+    font-family: 'Tokyo', sans-serif;
+    overflow-x: auto;
+}
 
 main h1, h2, h3, h4, h5, h6 {
     font-family: 'Tokyo', sans-serif;
