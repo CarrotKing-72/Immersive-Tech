@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ryan Mcfly's Portfolio - Pixel Art Project</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        main {
+            text-align: center;
+            background-color: rgb(243, 243, 243);
+        }
+        .header-container {
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header-container h2 {
+            margin: 0;
+        }
+        .subtext {
+            text-align: center;
+            margin: 20px auto;
+            max-width: 600px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        .content {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-right">
+            <img src="TextClear.png" alt="TextClear">
+        </div>
+        <h1>Ryan Mcfly's Portfolio</h1>
+        <div class="header-left">
+            <img src="iconClear.png" alt="iconClear">
+        </div>
+        <nav>
+            <a href="index.html">Welcome</a>
+            <a href="projects.html">Projects</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    <main>
+        <div class="header-container">
+            <button class="back-button" onclick="location.href='projects.html'">Back to Projects</button>
+            <h2>Pixel Art Project</h2>
+        </div>
+        <div class="content">
+            <p>For this project I chose to make a 2d pixel art level of a dungeon setting like in the old 2d games, the original base idea was to have a grungy dungeon with cells and inmates in them, one player character that’s a knight/ adventurer and I also wanted to include a prison guard that would walk around the scene as well to give it some more life, this is a very basic drawing I did when first planning out the scene: </p>
+            <br>
+            <div style="text-align: center;"> <img src="pa1.png" alt="er1" style="width: 100%; max-width: 600px; height: auto;"> </div>
+            <br>
+            <p>I also looked around the internet for more ideas and inspiration on the level of detail I wanted to go into </p>
+           <div style="text-align: center;"> <img src="pa2.png" alt="er1" style="width: 100%; max-width: 600px; height: auto;"> </div>
+           <p>Cainos (2022). Pixel Art Platformer - Dungeon. [online] @UnityAssetStore. Available at: https://assetstore.unity.com/packages/2d/environments/pixel-art-platformer-dungeon-237109.</p>
+           <div style="text-align: center;"> <img src="pa3.png" alt="er1" style="width: 100%; max-width: 600px; height: auto;"> </div>
+           <p>Lantos, T. (2016). Night Vale. [online] Pinterest. Available at: https://uk.pinterest.com/pin/313985405254399729/ [Accessed 22 May 2025].</p>
+           <p>The main inspiration I took from these images was how I wanted the general look of the brick back and foreground to look as well as the main perspective I was going for in the scene I also liked the look of the cells and torches on the wall in the (Lantos,2016) image but preferred the grey tone in the (cainos, 2022) image.</p>
+           <br>
+           <p>I started to work on the project on the 30th of January and began with the wall torch asset that I wanted to implement, I began with creating the base image of the torch with the depth in the wood and wall mount then the base flame aswell before animating </p>
+              <div style="text-align: center;"> <img src="pa4.png" alt="er1" style="width: 100%; max-width: 600px; height: auto;"> </div>
+           <p>Although I wasn’t a fan of how the flame turned out in this version so when I went to create a flicker animation I widened the base of the fire and shortened it to create an effect where the flame was stronger and seemed to have more substance to it.</p>
+              <div style="text-align: center;"> <img src="pa5.png" alt="er1" style="width: 100%; max-width: 600px; height: auto;"> </div>
+            <p>then I animated each frame of the fire totalling 6 frames, with slight variations in the flame size and shape along with how the sparks travelled off of the torch as well to produce a fluid and not too over the top animation.</p> 
+              <div style="text-align: center;"> <img src="pa6.gif" alt="er1" style="width: 100%; max-width: 600px; height: auto;"> </div> 
+            <p>I took about a weeks break to work on some other projects but when I started to work on the scene again I began with making a nice wall texture that I could use to form the overall scene in the level, I used a mainly grey pallet using lighter and darker shades to create depth and texture in the brick I also used varying brick sizes to not seem so repetitive which allowed me to use the texture as a tile pallet and create the whole background out of the wall asset</p>
+                <div style="text-align: center;"> <img src="pa7.png" alt="er1" style="width: 100%; max-width: 600px; height: auto;"> </div>
+            <p>It took me some time to get the way I wanted to shade the brick correctly and once I got the idea I then used it over the whole wall till I got this: </p>
+                 <div style="text-align: center;"> <img src="pa8.png" alt="er1" style="width: 100%; max-width: 600px; height: auto;"> </div>
+            <p>It gives a nice effect of depth when looked at from further away like it would be in the scene itself, once that’s done I then took the texture and flipped it both horizontally and vertically to create 4 variations that I used in the tile pallet for better diversity within the scene art wise.
+I then created a blank 2d unity project and populated with the wall asset, trying to create variation with the 4 different versions I made</p>
+                    <div style="text-align: center;"> <img src="pa9.png" alt="er1" style="width: 100%; max-width: 600px; height: auto;"> </div>
+            <p>However it started to look good the only issue was near the bottom the wall connected odd and started to give a weird look to the scene, I deal with that a bit later on though, next I added in the wall torch I made with a light using unity’s lighting tools </p>
+                    <div style="text-align: center;"> <img src="pa10.png" alt="er1" style="width: 100%; max-width: 600px; height: auto;"> </div>
+                    <br>
+                    <div style="text-align: center;"> <img src="pa11.gif" alt="er1" style="width: 100%; max-width: 600px; height: auto;"> </div>
+            <p>I added two torches to the scene and using a small script that I wrote it coded a light pulsing animation to the torch lights</p>
+            <pre><code>
+public class TorchLight : MonoBehaviour
+{
+    Light2D lightcomponent;
+    float maxIntensity = 6.0f;
+    float minIntensity = 4.0f;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        lightcomponent = GetComponent<Light2D>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (lightcomponent != null)
+        {
+            lightcomponent.intensity = Mathf.Lerp(minIntensity, maxIntensity, Mathf.PingPong(Time.time, 1));
+        }
+    }
+}
+</pre></code>
+<p>To deal with the issue of the floor of the game looking weird due to how the textures connected i decided to make a basic floor texture that just left the bottom of the screen dark like it was looking underground, this not only gave me more of a substantial floor to work with but it also gave more depth and perspective to the scene overall</p>
+  <div style="text-align: center;"> <img src="pa12.png" alt="er1" style="width: 100%; max-width: 600px; height: auto;"> </div>
+<p>After that I was pretty happy with how the scene was coming together overall and due to the other projects that were coming up and other work I had to do, I put this project on the backburner for a while.
+When I started to work on it again the next thing to do was make the cells that show up in level, this is where I had the most issues in asset creation because I didn’t know how to create the cell door with depth and add things inside the cell which was part of my original plan when I started. </p>
+  <div style="text-align: center;"> <img src="pa13.png" alt="er1" style="width: 100%; max-width: 600px; height: auto;"> </div>
+<p>This was as far as I got before I took a break as I had no clue on how to add cell bars and then create anything of detail within the cell and any way I tried it didn’t look good, in the end I made the decision to drop the notion of adding  stuff within the cell because I didn’t have the time or the skill right now to include it so I back pedalled a bit and simplified into just the cell and a dark inside to create the idea that something could be in there but the conditions are so bad you cant see in to look. After some tampering and taking what I had learned previously with adding depth and texture on the wall with colour shades and different darker tones I managed to create a cell I was happy with</p>
+    <div style="text-align: center;"> <img src="pa14.png" alt="er1" style="width: 100%; max-width: 600px; height: auto;"> </div>
+<p>Overall I added in different stages of darkness in the cell to show the light bleeding in outside into eventual pure darkness.
+Once added in the cell doors tied the whole scene together. The next and final thing I needed to tackle was adding in a player character so you can go and look around the scene yourself as a player.</p>
+     <div style="text-align: center;"> <img src="pa15.png" alt="er1" style="width: 100%; max-width: 600px; height: auto;"> </div>
+<p>This was the hardest thing to create out of the whole project for me, at first I tried to use a sprite I created for something else and alter it to fit the theme of this setting however I only had an idle animation for him sorted out and when I attempted a walking animation I could not no matter how much I altered or tried to make the leg movement look smooth, also when I tested out the sprite in the scene It did not fit at all anyway, so I pivoted into trying to make something a bit more fitting than reuse older assets.</p>
+     <div style="text-align: center;"> <img src="pa16.png" alt="er1" style="width: 100%; max-width: 600px; height: auto;"> </div>
+<p>I decided to create a knight character for the scene which I thought would be more fitting for the scene after some playing around I came up with a simple look but making use of colours and shading it looks a lot more detailed than it is. </p>
+        <div style="text-align: center;"> <img src="pa17.png" alt="er1" style="width: 100%; max-width: 600px; height: auto;"> </div>
+<p>Also I kept the legs a lot less detailed than the other asset meaning the walking animation could be created easier as the legs could be distorted without it looking bad with more detailed sprites.</p>
+    <div style="text-align: center;"> <img src="pa18.png" alt="er1" style="width: 100%; max-width: 600px; height: auto;"> </div>
+    
+<p>I did mess up a bit when making the idle animation though as when you are in the scene in game the character actually moves up a pixel and back down which makes it float slightly up and down.</p>
+    <div style="text-align: center;"> <img src="pa19.gif" alt="er1" style="width: 100%; max-width: 600px; height: auto;"> </div>
+<p>Finally I had the scene finished and a working player with animations in the game so you can move around and also have an idle animation, the way I did this was I had a simple animator component setup and a walking Boolean which when true would trigger the walking animation and when false the idle animation would play </p>
+    <div style="text-align: center;"> <img src="pa20.png" alt="er1" style="width: 100%; max-width: 600px; height: auto;"> </div>
+<p>This was all controlled by a simple player controller script that covered left and right movement, or since its a 2d game it would be forwards and backwards movement</p>
+<pre><code>
+public class PlayerController : MonoBehaviour
+{
+    public float moveSpeed = 5f; // Speed of the player
+    private Animator animator;  // Reference to the Animator component
+    private Rigidbody2D rb;     // Reference to the Rigidbody2D component
+    private float moveInput;    // Horizontal input
+
+    void Start()
+    {
+        // Get references to the Animator and Rigidbody2D components
+        animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    void Update()
+    {
+        // Get horizontal input (-1 for A, 1 for D, 0 for no input)
+        moveInput = Input.GetAxisRaw("Horizontal");
+
+        // Set the walking parameter in the Animator based on movement
+        animator.SetBool("walking", moveInput != 0);
+    }
+
+    void FixedUpdate()
+    {
+        // Move the player left or right
+        rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+    }
+}
+</pre></code>
+<p>Overall I am very  happy with how the level turned out even with outside pressures of other projects that I had to do alongside this one, but I do think that there were a lot of issues and things I encountered that I have learned from for example this was the first time I have had to manage more than 1 major project at a time and finding the balance to work on them and giving them the time they need individually to be the best I can make them was a challenge and I do not think that I managed my time to the best of my ability, also scope was still an issue with this project and I was forced to re-evaluate how I approach more projects in the future, I had to drop the idea of adding in a enemy npc that walked around the level and I also had to simplify a few assets like the dungeon cell which I originally wanted inmates to be in and animated.
+In the future I will make sure that when I approach similar projects I will know my abilities and give myself the right amount of time that I need to develop my skills and make the best final result possible.
+</p>
+
+<p>Download the level Build Here:<a href="https://github.com/CarrotKing-72/PixelArtProject" > Pixel Art Level Download</a></p>
+
+
+        
+        
+        </div>
+    </main>
+</body>
+</html>
