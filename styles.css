@@ -215,3 +215,22 @@ img {
         z-index: 10;
     }
 }
+
+/* Responsive image container for index page */
+.image-container img,
+.header-container img {
+    max-width: 100%;
+    height: auto;
+    width: 20%;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Make images larger on mobile */
+@media (max-width: 600px) {
+    .image-container img,
+    .header-container img {
+        width: 90vw;
+        max-width: 90vw;
+    }
+}
