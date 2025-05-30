@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ryan Mcfly's Portfolio - Group Vr Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        main {
+            text-align: center;
+            background-color: rgb(243, 243, 243);
+        }
+        .header-container {
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header-container h2 {
+            margin: 0;
+        }
+        .subtext {
+            text-align: center;
+            margin: 20px auto;
+            max-width: 600px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        .content {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-right">
+            <img src="TextClear.png" alt="TextClear">
+        </div>
+        <h1>Ryan Mcfly's Portfolio</h1>
+        <div class="header-left">
+            <img src="iconClear.png" alt="iconClear">
+        </div>
+        <nav>
+            <a href="index.html">Welcome</a>
+            <a href="projects.html">Projects</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    <main>
+        <div class="header-container">
+            <button class="back-button" onclick="location.href='projects.html'">Back to Projects</button>
+            <h2>Time Heist Vr Group Game</h2>
+        </div>
+        <div class="content">
+            <p>Our Team: <br></br>
+Developers: Ryan Mcfly (me), Dominic Duggan, Kian Wootton <br></br>
+Designers: Chris Sirrel, Caitlin Hannan, Louis Tucker <br></br>
+The goal for this project was to make a new and unique group game project to test our current understanding of unity as a whole and see where our teamwork skills are at, our group had the task of creating a virtual reality game and we went with the concept of a Dungeon crawler where you need to scavenge items around the map, however it would be procedurally generated so no 2 levels would ever be the same. <br></br>
+The main goals we needed was to create assets and the games functions within 6 weeks ready to be shown off at the end of year show, we hit a few roadblocks along the way causing some ideas to pivot or change but overall kept the core concept the same throughout, resulting in a game I am proud of and will continue to work on along with the rest of the team. <br></br>
+Our team was comprised of 3 developers and 3 designers to split the work evenly among the group, the main features that we needed to include and nail within the project was having a procedural generation system for the levels, vr movement and object interaction, a scanner and object value system as well as enough assets to build the levels and items around for the game to visually work well also. This was the first time any of us in the group had worked on a VR project, so it was a huge learning curve for everyone involved and I believe that we all learned a lot from this and hit the goals we set ourselves when starting out. <br></br>
+So, for the game the main ideas we had to build off was: <br></br>
+Gameplay Loop: <br>
+•	Being chased by a monster, collect items of value to hit a quota. <br>
+•	Collect items of value, then solve puzzles to leave. <br>
+•	Timer on each level, collect items of value before the timer runs out. <br>
+•	Backpack system, most items can be stored aside from larger items. <br>
+•	Weight system, carrying too much can slow you down.<br>
+•	Oil lamp for lighting, can be stored on the hip.<br><br>
+Design Choices: <br>
+•	Cave-in at pyramid/temple, collect items and leave before cave-in., <br>
+•	Could make stylized Tomb Raider design, more polygonal. <br>
+•	However, could be bad for UX as it can be bad on the eyes. <br>
+•	British Empire setting, grave robbing pyramids for museums.<br>
+•	Easter egg items, pics of devs on different items. <br></br>
+
+
+that was the main ideas and notes from our first group meeting, but as we actually started we did have to cut or change some features to make sure it was within scope and appropriate, in the end we had to remove the idea of a monster in the game and moved to a more scavenger hunt based model finding items of different value and seeing how much you can get in a time limit, we also moved puzzles to something that we could implement later down the line rather than now. We also decided that store wise the player would be a time travelling archaeologist and you would have travelled back to the Egyptian times to raid a pyramid of sorts and using that theme and story it allows us to create more maps later based on different themes and time periods increasing replay ability of the game itself. <br></br>
+For the art a low poly and more stylised tone was agreed on to not only decrease workload but also reduce the amount of optimization needed to be done to have the game working natively on a quest headset which would be the main device used when building the game or more specifically the quest 3 as a few of us owned it ourselves and we could get them loaned off of the university as well, this headset allowed us to build the game directly to it without having to rely on pc VR methods that tie the user down with a cable or require super-fast Wi-Fi to work wirelessly as the quest is a standalone headset brand with the quest 3 good enough to run the slightly optimized version of our game natively, for the demo when showing off our game though we did upgrade to the meta quest pro for better and more reliable specs and visuals. <br></br>
+As for planning it all this was the timeline we based our work schedule off for each team<br></br> </p>
+<div style="text-align: center;">
+        <img src="vr1.png" alt="VrGame" style="width: 100%; max-width: 800px; height: auto;">
+        </div>
+<br>
+<p>
+
+admittedly week 1 and 2 were very light on work for all of us due to other projects being due or worked on around then at the same time, however once we got to week 3 we began to focus on this project a lot more making it a priority.<br></br> Each of us had our own tasks we were to complete to tie the game together, Dom was working on the level generation feature and the presets for each of the rooms, Kians task was sorting out object spawning, their values and getting the scanner to work, he also included object damaging as well as working with Dom on sorting out a torch and lighting feature to give the game a better atmosphere.<br></br> My tasks were to make sure there is a working player movement system in place that allowed for smooth movement and rotation as well as the ability to pickup objects in your hand and store them on the body like a holster inventory. <br></br>
+When we started to actually work on our own respective aspects of the game we used a GitHub Repo to allow us to share the game files and updates with each other in real time which was extremely helpful as I have only used unity version control in the past and have had a lot of issues with it. <br></br>
+I started with a basic test scene when working on my features that I needed to implement, I used one of the start rooms we had as a prefab that Dom put together and got to work on the movement system</p><br></br> 
+<div style="text-align: center;">
+        <img src="vr2.png" alt="VrGame" style="width: 100%; max-width: 800px; height: auto;">
+        </div>
+<br></br>
+
+<p>I didn’t know anything about vr game development before starting on this project so to give me a bit of guidance I found this great guy on YouTube called XR Dev Rob who had a great set of videos teaching the basics of movement in VR using Unity’s XR Interaction Toolkit <br></br>
+XR Dev Rob - XR AI Tutorials (2022a). Part 2: VR Setup with XR Interaction Toolkit - How to Make a VR Game. [online] YouTube. Available at: https://www.youtube.com/watch?v=0rL_YrqG7lU  
+<br></br>
+XR Dev Rob - XR AI Tutorials (2022b). Part 3: Hand Animation and Reading Input from VR Controllers - How to Make a VR Game. [online] YouTube. Available at: https://www.youtube.com/watch?v=uhQINXW94Xw 
+<br></br>
+XR Dev Rob - XR AI Tutorials (2022c). Part 5: Movement in VR and Unity Character Controller - How to Make a VR Game. [online] YouTube. Available at: https://www.youtube.com/watch?v=UoSeew6qahY  </p>
+<br></br>
+<div style="text-align: center;">
+        <img src="vr3.png" alt="VrGame" style="width: 100%; max-width: 800px; height: auto;">
+        </div>
+
+<br></br>
+<p>
+Once I had a basic build of the XR Origin prefab working with smooth movement I decided to follow the next video and add in the hands with animations and grab points for holding objects and general interactions. </p>
+<br></br>
+<div style="text-align: center;">
+        <img src="vr4.png" alt="VrGame" style="width: 100%; max-width: 800px; height: auto;">
+        </div>
+<br></br>
+<p>
+As you can see in the prefab that’s not the only thing I added in though as I realised the same way you can hold objects with your hands in VR using XR interactable and sockets i managed to create a sort of player holster system where you have 4 holsters around your waist that objects can slot into for the player to carry, they are indicated via some glowing rings in game for visual ease and work with any interactable object </p>
+<br></br>
+<div style="text-align: center;">
+        <img src="vr5.png" alt="VrGame" style="width: 100%; max-width: 800px; height: auto;">
+        </div>
+<br></br>
+<p>
+Now I had created the base of the player prefab I decided to add in a jump button which in the end didn’t actually get used much in the playtesting but will be utilized in later versions with different maps: </p>
+<br></br>
+<pre><code>
+public class advancedMovement : MonoBehaviour
+{
+
+    public InputActionReference jumpButton = null;
+    public CharacterController charController;
+    public float jumpHeight;
+    private float gravityValue = -9.81f;
+
+    private Vector3 playerVelocity;
+
+    public bool jumpButtonReleased;
+
+    private bool isTouchingGround;
+    // Start is called before the first frame update
+    void Start()
+    {
+        jumpButtonReleased = true;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        playerVelocity.y += gravityValue * Time.deltaTime;
+        charController.Move(playerVelocity * Time.deltaTime);
+        if (charController.isGrounded && playerVelocity.y < 0)
+        {
+            playerVelocity.y = 0f;
+            isTouchingGround = true;
+        }
+
+        float jumpVal = jumpButton.action.ReadValue<float>();
+        if (jumpVal > 0 && jumpButtonReleased == true)
+        {
+            jumpButtonReleased = false;
+            Jump();
+            isTouchingGround = false;
+        }
+        else if (jumpVal == 0)
+        {
+            jumpButtonReleased = true;
+        }
+    }
+
+    public void Jump()
+    {
+        if (isTouchingGround == false)
+        {
+            return;
+        }
+        playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+    }
+}
+</pre></code>
+<br></br>
+<p> I also began work on a backpack system using the same logic as the holsters which was getting a backpack asset and adding interactable holsters or slots on the outside which players could store items in, then they would be able to slot the backpack onto a slot on their back so it would move around with them in game.</p> 
+<br></br>
+<div style="text-align: center;">
+        <img src="vr6.png" alt="VrGame" style="width: 100%; max-width: 800px; height: auto;">
+        </div>
+<br></br>
+<p>
+The general idea was correct, however when implemented and tested in game I encountered a few bugs that ultimately could not be fixed before we had to show the game to the public, the main issues was the fact that the backpack was a child of the player prefab meaning if dropped onto the floor you wouldn’t actually be able to pick it up again due to the fact it would move in game in correlation to the players movement. <br></br> also getting the colliders to work properly with picking up the backpack and then slotting it again was an issue even when I added in a layer just for the backpack so no other slots would try and activate it unless stated otherwise, as the hands had collision on also, this meant that sometimes when letting go it wouldn’t slot in properly and would be launched out of reach. <br></br>  I do know now how to fix these bugs for future implementation of this feature but in the meantime, we decided to move forward and just increase the amount of hip holsters that the player has. <br></br>
+The other issue io encountered was the holsters not turning with the players rotation when looking around which was causing issues when testing so I wrote a small script that would have the holsters follow the x axis of the main camera or headset aswell: <br></br> </p>
+<pre><code>
+
+public class HolsterFollowHeadset : MonoBehaviour
+{
+    public Transform headset;     // Drag your Main Camera here
+    public Transform rigRoot;     // Drag your XR Origin or Player here
+    public Vector3 offset = new Vector3(0.3f, -0.5f, 0.0f); // Position offset (hip level, right side)
+
+    void Update()
+    {
+        // Get the Y rotation of the headset
+        Quaternion headsetYRotation = Quaternion.Euler(0f, headset.eulerAngles.y, 0f);
+
+        // Apply that rotation to the offset to get correct rotated position
+        Vector3 rotatedOffset = headsetYRotation * offset;
+
+        // Set position relative to rig root
+        transform.position = rigRoot.position + rotatedOffset;
+
+        // Rotate holster to face same Y as headset
+        transform.rotation = headsetYRotation;
+    }
+}
+</pre></code>
+<br></br>
+<p>That’s the main features of the game that I was responsible for, but as a team we all worked hard and did well, discord was our main way of communicating outside of lectures and meetings which I found useful and I don’t think we had any issues within the team at all, everyone did their part and notified on bugs or asked questions when they came up which resulted in smooth and efficient work from us and without the communication and willingness to work from everyone I do not think the game would have been finished in time. <br></br>
+We showed the game to people at the 2nd year hosted code and canvas event on may the 15th and received a ton of positive feedback, but watching people play we noticed a lot of things which we could improve on for the future to make the game the best we can possibly make it, here is a list of the main points we found that need closer attention: <br></br>
+•	Numbers on scanner hard to read, make value green when item is scanned to indicate value of item and readability <br>
+•	Potential weight bug/collision bug with items in inventory causing involuntary movement <br>
+•	Minor lag <br>
+•	When scanner is left in a room and then the room respawns, scanner is no longer attainable <br>
+•	Could make backpack an upgrade <br>
+•	sometimes stairs/random props merge into the spawn room <br>
+•	make inventory sockets further apart/make colliders smaller when inventory<br>
+•	need to add hand collision to interact with objects e.g. punching <br>
+•	issues with depth perception and also motion sickness <br>
+•	could add force grab to objects <br>
+•	holsters too far away from player character <br>
+•	not clear that torches can be picked u, <br>
+•	crouch needs to be added <br>
+•	pretty dark, maybe make environment a bit lighter<br>
+•	maybe make colliders bigger for items when on the ground <br>
+•	certain gameplay mechanics like the compass aren't too clear <br>
+•	potentially make spawn room futuristic to convey time traveler aesthetic <br>
+•	make the buttons more stylized <br>
+•	when going down stairs/ramps the utility belt does not follow the player <br>
+•	replace torch with flashlight, make it wearable on wrists <br>
+•	difficulty scaling could be a feature<br>
+•	delete scanner, replace with wrist screen that shows value of the item that is picked up<br></br> </p>
+<div style="text-align: center;">
+        <img src="VrGif.gif" alt="VrGame" style="width: 100%; max-width: 800px; height: auto;">
+        </div>
+        <br></br>
+<p>
+overall though this project was my favourite and the one I think I learnt from the most over the year, It was interesting to work in a team full of people all helping out and collaborating, getting to demo the game to outside users to gather input was also very useful and a new experience that I can learn from and improve how I showcase similar stuff, my skills in unity and the VR aspect of things have drastically improved during this time as well as my ability to solve problems and be able to make the right decision to prioritize different features when under pressure. <br></br>
+We will be working on this game over the summer and trying to include the fixes above and even adding more maps and other bigger gameplay features in hopes of a positive public release in the future. <br></br></p>
+</p>
+
+        </div>
+    </main>
+</body>
+</html>
