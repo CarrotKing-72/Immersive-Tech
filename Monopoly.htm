@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ryan Mcfly's Portfolio - Monopoly Mobile Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        main {
+            text-align: center;
+            background-color: rgb(243, 243, 243);
+        }
+        .header-container {
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header-container h2 {
+            margin: 0;
+        }
+        .subtext {
+            text-align: center;
+            margin: 20px auto;
+            max-width: 600px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        .content {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-right">
+            <img src="TextClear.png" alt="TextClear">
+        </div>
+        <h1>Ryan Mcfly's Portfolio</h1>
+        <div class="header-left">
+            <img src="iconClear.png" alt="iconClear">
+        </div>
+        <nav>
+            <a href="index.html">Welcome</a>
+            <a href="projects.html">Projects</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    <main>
+        <div class="header-container">
+            <button class="back-button" onclick="location.href='projects.html'">Back to Projects</button>
+            <h2>Monopoly Mobile Game</h2>
+        </div>
+        <div class="content">
+            <p>For this project we had to make a mobile game of our choice, me and my group came up with the idea to make a monopoly board game parody for our project, originally I had the idea to make it a game where instead of pieces you played as a board game store and each square on the board would be a different board game that you can purchase for your store, jail would then be replaced with law suit and court and free parking would be tax refund etc. <br></br>
+From the start of this project we immediately encountered issues, our group was 4 people initially and 2 of them would not respond to any messages I sent them or engage in the development at all in any capacity, also when I setup the unity scene and version control it would not work for the other person who did communicate with me during development and they could not gain access to the games files at all.<br></br>
+So I had to solo this project pretty much whilst managing my other projects, lectures and other Uni work which meant that I didn’t have enough time to fully focus on making this game to the best of my ability.<br></br>
+I started out by looking at what colour pallet I wanted to use for the game and after a bit of searching through the internet I came across this one Lospec. (2023). Resurrect 64 Palette. [online] Available at: https://lospec.com/palette-list/resurrect-64. 
+ which seemed to fit my needs nicely and in theory look really pleasing to the eye whilst offering a fresh and different set of colours than normal monopoly boards. After opening up piskel and fiddling with the board size to the squares look right I got this as a base to build off of:
+        </p>
+            <br>
+            <div style="text-align: center;">
+                <img src="mo1.png" alt="Canva Poster" style="width: 100%; max-width: 600px; height: auto;">
+            </div>
+            <br>
+            <p>Next I also needed to tackle another major aspect of the game and that would be the dice, I did this in piskel as well by making 6 different dice faces all in 2d so when I used them in unity it would shuffle between the faces generating a random number like how a dice would be rolled.</p>
+            <br>
+            <div style="text-align: center;">
+                <img src="mo2.png" alt="Canva Poster" style="width: 100%; max-width: 600px; height: auto;">
+            </div>
+            <br>
+<p>Now I had the dice done I went back to readjust the monopoly board and start adding in the individual squares, however making sure that the spacing was correct proved to be a lot hard than I thought and required me to erase and redraw the boarders a few times so that they didn’t look out of proportion when playing on the board</p>
+            <br>
+            <div style="text-align: center;">
+                <img src="mo3.png" alt="Canva Poster" style="width: 100%; max-width: 600px; height: auto;">
+            </div>
+            <br>
+            <p>Now I had the general Idea of how the board squares should look, I populated the rest of the board with go, chance card slot and spaces the law suit and tax fraud squares as well as court/jail with the overall board looking like this</p>
+            <br>
+            <div style="text-align: center;">
+                <img src="mo4.png" alt="Canva Poster" style="width: 100%; max-width: 600px; height: auto;">
+            </div>
+            <br>
+            <p>I did want to work on it a bit more to make it look a lot more polished but as I mentioned before I was pretty much the only one working on the game at this stage and needed to start coding in some of the features to make the game playable. <br></br>
+This started with importing my sprites I made as well as the player token sprites I quickly threw together (some coloured circles) to get a base down, then I followed this YouTube guide which helped me figure out the dice rolling mechanics and the basis for the waypoint movement which I then turned into the property management system as well: <br></br>
+Alexander Zotov (2018). Unity 2D Tutorial How To Create Simple Board Game With Dice Rolling And Turn Based Movement Features. [online] YouTube. Available at: https://www.youtube.com/watch?v=W8ielU8iURI <br></br>
+After I followed that I ended up with a layout that included the board and dice as well as basic player turn indicators on screen telling you who is playing and can roll
+</p>
+            <br>
+            <div style="text-align: center;">
+                <img src="mo5.png" alt="Canva Poster" style="width: 100%; max-width: 600px; height: auto;">
+            </div>
+            <br>
+            <p>Next I wrote a money script which gave each player 1500 starting cash just like in regular monopoly and each square was its own waypoint that contained the property information such as value, rent amount and who owns it as well as if it can be purchased or not</p>
+            <br> 
+            <div style="text-align: center;">
+                <img src="mo6.png" alt="Canva Poster" style="width: 100%; max-width: 600px; height: auto;">
+            </div>
+            <br>
+            <pre><code>
+// Processes the property purchase transaction
+ public void PurchaseProperty(int player, int propertyIndex)
+ {
+     Property property = properties[propertyIndex];
+     int cost = property.cost;
+
+     if (player == 1 && player1Money >= cost)
+     {
+         player1Money -= cost;
+         property.owner = 1;
+         UpdatePlayerBalance(1, player1Money);
+     }
+     else if (player == 2 && player2Money >= cost)
+     {
+         player2Money -= cost;
+         property.owner = 2;
+         UpdatePlayerBalance(2, player2Money);
+     }
+     else
+     {
+         UpdatePropertyCostText($"Player {player} does not have enough money to purchase the property.");
+     }
+ }
+
+ // Processes the property selling transaction
+ public void SellProperty(int player, int propertyIndex)
+ {
+     Property property = properties[propertyIndex];
+     int sellPrice = property.cost / 2;
+
+     if (player == 1)
+     {
+         player1Money += sellPrice;
+         property.owner = 0;
+         UpdatePlayerBalance(1, player1Money);
+     }
+     else if (player == 2)
+     {
+         player2Money += sellPrice;
+         property.owner = 0;
+         UpdatePlayerBalance(2, player2Money);
+     }
+ }
+</pre></code>
+<br>
+<p>Once that was implemented I had the basic functions of the game working, movement, money and rent and properties so it was starting to come together.</p>
+<br>
+<p>I decided to make the switch to mobile format of the screen and adding in clickable buttons instead of keyboard keys to make the game mobile friendly</p>
+ <br>
+            <div style="text-align: center;">
+                <img src="mo7.png" alt="Canva Poster" style="width: 100%; max-width: 600px; height: auto;">
+            </div>
+            <br>
+<p>I took the sprite for the checkmark and cross buttons from here:<br></br>
+Spritecatalog.com. (2025). Interface - Sprite Catalog. [online] Available at: https://www.spritecatalog.com/interface/  [Accessed 12 March 2025]. <br> </br>
+One thing I did struggle a lot with when doing this is getting the UI to fit for different screen types without text or anything going off screen or overlapping with any other important UI pieces, originally I had it so each piece had a fix point in the screen and would adjust the distances in the space via the inspector, looking back it was a very easy mistake to make that cost me a lot of time on this project, but after some looking around the internet and with the help of this article:<br></br> Reddit.com. (2024). Reddit - The heart of the internet. [online] Available at: https://www.reddit.com/r/gamedev/comments/1dg55lk/unity_ui_scaling_for_mobile
+[Accessed 14 March 2025]. <br></br>
+I manage to work out how to scale the UI with screen size as well as then finally use anchor points to control the positioning and not just have the values constant which caused issues of different aspect ratio screens. </p>
+            <br>
+            <div style="text-align: center;">
+                <img src="mo8.png" alt="Canva Poster" style="width: 100%; max-width: 600px; height: auto;">
+            </div>
+            <br>    
+<p>The game was finally starting to take shape, I had managed to get the player property system working properly so money, rent and purchasing worked just fine, all was well until I encountered a bug which would stall me for over a week and that was when a player rolled the dice and they moved, after deciding what to do with the property they landed on the other player would then move without rolling the dice and once it reached the first player they would then both move together round the board infinitely. <br></br>
+ this was a major setback for me as I could not work out what was wrong no matter how hard I tried, I spent hours trying to fix this, looking back over the code and trying different changes in hopes of a solution. <br></br>It was only when we presented our games to the rest of the course did rob give me a solution and that was to rewrite some of the scripts so that there would be multiple different checks throughout the turn i.e rolling dice, movement finished and then property purchasing and only then after all of these confirmed that the portion of the turn is done it would switch to the next player after a 0.5sec delay, this ensured that the other player could not use an old dice value or skip anything meaning that they had to roll the dice and perform their turn properly.
+</p>
+<pre><code>
+    public static bool IsWaitingForInput()
+    {
+        Money moneyManager = UnityEngine.Object.FindFirstObjectByType<Money>();
+        return moneyManager != null && moneyManager.isWaitingForInput;
+    }
+
+    public void SetWaitingForInput(bool isWaiting)
+    {
+        if (moneyManager != null)
+        {
+            moneyManager.isWaitingForInput = isWaiting;
+        }
+    }
+    public static int GetCurrentPlayer()
+    {
+        Debug.Log($"Current player: {currentPlayer}");
+        return currentPlayer;
+    }
+    public void SwitchTurn()
+    {
+        // Ensure the dice is reset before switching turns
+        waitingForDiceReset = true;
+
+        // Switch to the next player
+        currentPlayer = (currentPlayer == 1) ? 2 : 1;
+
+        // Update UI elements to reflect the current player's turn
+        player1MoveText.gameObject.SetActive(currentPlayer == 1);
+        player2MoveText.gameObject.SetActive(currentPlayer == 2);
+
+        // Reset the dice and set the turn for the next player
+        Dice dice = UnityEngine.Object.FindFirstObjectByType<Dice>();
+        if (dice != null)
+        {
+            dice.ResetDice();
+            dice.SetTurn(currentPlayer); // Ensure the dice is set for the current player
+        }
+        else
+        {
+            Debug.LogError("Dice object not found!");
+        }
+
+        Debug.Log($"Turn ended. Next player: {currentPlayer}");
+    }
+    public static void ConfirmDiceReset()
+    {
+        waitingForDiceReset = false;
+        Debug.Log("Dice reset confirmed. Next player can roll.");
+    }
+
+</pre></code>
+<br></br>
+<pre><code>
+  void Start()
+  {
+      whoWinsTextShadow = GameObject.Find("WhoWinsText");
+      player1MoveText = GameObject.Find("Player1MoveText");
+      player2MoveText = GameObject.Find("Player2MoveText");
+
+      if (whoWinsTextShadow == null || player1MoveText == null || player2MoveText == null)
+      {
+          Debug.LogError("UI elements not found.");
+          return;
+      }
+
+      player1 = GameObject.Find("Player1");
+      player2 = GameObject.Find("Player2");
+
+      if (player1 == null || player2 == null)
+      {
+          Debug.LogError("Player objects not found.");
+          return;
+      }
+
+      player1Path = player1.GetComponent<FollowPath>();
+      player2Path = player2.GetComponent<FollowPath>();
+
+      if (player1Path == null || player2Path == null)
+      {
+          Debug.LogError("FollowPath components not found.");
+          return;
+      }
+
+      player1Path.moveAllowed = false;
+      player2Path.moveAllowed = false;
+
+      whoWinsTextShadow.SetActive(false);
+      player1MoveText.gameObject.SetActive(true);
+      player2MoveText.gameObject.SetActive(false);
+
+      player1Path.OnMoveFinished += () => OnPlayerMoveFinished(1);
+      player2Path.OnMoveFinished += () => OnPlayerMoveFinished(2);
+
+      moneyManager = UnityEngine.Object.FindFirstObjectByType<Money>();
+
+      UpdatePlayerBalance(1, moneyManager.GetPlayerBalance(1));
+      UpdatePlayerBalance(2, moneyManager.GetPlayerBalance(2));
+  }
+
+  void Update()
+  {
+      if (gameOver) return;
+
+      if (moneyManager.isWaitingForInput) return;
+
+      if (currentPlayer == 1 && player1Path.moveAllowed && player1Path.waypointIndex >= player1StartWaypoint + diceSideThrown)
+      {
+          player1Path.moveAllowed = false;
+          player1StartWaypoint = player1Path.waypointIndex;
+          Debug.Log("Player 1 move finished.");
+          OnPlayerMoveFinished(1);
+      }
+
+      if (currentPlayer == 2 && player2Path.moveAllowed && player2Path.waypointIndex >= player2StartWaypoint + diceSideThrown)
+      {
+          player2Path.moveAllowed = false;
+          player2StartWaypoint = player2Path.waypointIndex;
+          Debug.Log("Player 2 move finished.");
+          OnPlayerMoveFinished(2);
+      }
+
+      if (player1Path.waypointIndex == player1Path.waypoints.Length)
+      {
+          DisplayWinner("Player 1 Wins");
+      }
+
+      if (player2Path.waypointIndex == player2Path.waypoints.Length)
+      {
+          DisplayWinner("Player 2 Wins");
+      }
+  }
+
+  public static void MovePlayer(int playerToMove)
+  {
+      if (gameOver) return;
+
+      if (playerToMove == currentPlayer)
+      {
+          switch (playerToMove)
+          {
+              case 1:
+                  player1.GetComponent<FollowPath>().moveAllowed = true;
+                  Debug.Log("Player 1 move allowed.");
+                  break;
+              case 2:
+                  player2.GetComponent<FollowPath>().moveAllowed = true;
+                  Debug.Log("Player 2 move allowed.");
+                  break;
+          }
+      }
+      else
+      {
+          Debug.LogWarning("It's not this player's turn.");
+      }
+  }
+
+  private void OnPlayerMoveFinished(int player)
+  {
+      Debug.Log($"OnPlayerMoveFinished called for Player {player}");
+
+      // Determine the property index based on the player's current waypoint
+      int propertyIndex = (player == 1) ? player1Path.waypointIndex : player2Path.waypointIndex;
+
+      // Handle property interaction (e.g., rent, purchase, etc.)
+      moneyManager.HandleProperty(player, propertyIndex);
+
+      // If the game is waiting for input (e.g., property purchase decision), do not switch the turn yet
+      if (moneyManager.isWaitingForInput)
+      {
+          Debug.Log("Waiting for player input. Turn will not switch yet.");
+          return;
+      }
+
+      // End the turn and switch to the next player
+      Debug.Log($"Player {player} has completed their turn. Switching to the next player.");
+      moneyManager.EndTurn();
+      SwitchTurn();
+  }
+</pre></code>
+<br></br>
+<p>That’s the main chunk of code that handled the switching of turns in my game control script which then linked to my dice script aswell</p>
+<br></br>
+<pre><code>
+    void Start()
+    {
+        rend = GetComponent<SpriteRenderer>();
+
+        if (rend == null)
+        {
+            Debug.LogError("SpriteRenderer component is missing.");
+            return;
+        }
+
+        diceSides = Resources.LoadAll<Sprite>("DiceSides/");
+
+        if (diceSides == null || diceSides.Length < MAX_DICE_SIDES)
+        {
+            Debug.LogError("Dice sides not loaded correctly.");
+            return;
+        }
+
+        rend.sprite = diceSides[5]; // Default to '6' on the dice
+    }
+
+    private void OnMouseDown()
+    {
+        Debug.Log($"Dice clicked. Current turn: Player {whosTurn}, Dice rolled: {diceRolled}");
+
+        // Ensure the dice can only be rolled by the active player and after it has been reset
+        if (!GameControl.gameOver && coroutineAllowed && !diceRolled && GameControl.GetCurrentPlayer() == whosTurn && !GameControl.waitingForDiceReset)
+        {
+            StartCoroutine(RollTheDice());
+        }
+        else
+        {
+            Debug.Log("It's not your turn, the dice has already been rolled, or the dice hasn't been reset.");
+        }
+    }
+
+    private IEnumerator RollTheDice()
+    {
+        coroutineAllowed = false;
+        diceRolled = true; // Set the flag to true when the dice is rolled
+        int randomDiceSide = 0;
+
+        for (int i = 0; i <= 20; i++)
+        {
+            randomDiceSide = Random.Range(0, MAX_DICE_SIDES);
+            rend.sprite = diceSides[randomDiceSide];
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        GameControl.diceSideThrown = randomDiceSide + 1;
+
+        Debug.Log($"Dice rolled: {GameControl.diceSideThrown}");
+
+        // Add a small delay to ensure the dice roll value is processed
+        yield return new WaitForSeconds(0.5f);
+
+        // Trigger movement for the current player
+        GameControl.MovePlayer(whosTurn);
+
+        coroutineAllowed = true;
+    }
+
+    public void ResetDice()
+    {
+        diceRolled = false; // Reset the dice roll state
+        Debug.Log("Dice reset. Dice rolled: " + diceRolled);
+
+        // Notify GameControl that the dice has been reset
+        GameControl.ConfirmDiceReset();
+    }
+
+    public void SetTurn(int turn)
+    {
+        whosTurn = turn;
+
+        // Enable or disable the dice based on the current player's turn
+        bool isActive = GameControl.GetCurrentPlayer() == whosTurn;
+        gameObject.SetActive(isActive);
+
+        Debug.Log($"Dice turn set to Player {turn}. Dice active: {isActive}");
+    }
+
+
+</pre></code>
+<br></br>
+<p>After Implementing all of these fixes I had finally finished and had a working version of the game, that could be expanded on in the future via asset upgrades, adding in the auction features, chance spaces, lawsuits (jail) and then free parking.</p>
+            <br>
+            <div style="text-align: center;">
+                <img src="monopoly.gif" alt="Canva Poster" style="width: 100%; max-width: 600px; height: auto;">
+            </div>
+            <br>
+            <p>Overall, I think this was a very difficult project for me due to just how many issues that arose during the entire process as well as basically being a solo developer and designer working on it, I did learn a lot about 2d mobile interaction with touchscreen systems and turn based systems as well. This game was a great way for me to improve my problem solving skills by making me look at various solutions I would never have thought to try before, so even though the game is a bit unpolished I think it was successful in moving me forward with my skills in game design and how to manage when teamwork doesn’t always work out the way you want. The game wouldn’t take much more improvement before you could publish it as well, the core is done it would need better assets and a menu etc, but apart from that I’m proud to say its in a playable game ready state pretty much.</p>
+            
+ 
+ 
+        </div>
+    </main>
+</body>
+</html>
